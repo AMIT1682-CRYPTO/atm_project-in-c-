@@ -1,0 +1,139 @@
+#include<iostream>
+#include <stdlib.h>
+
+int balance=25000;        //initial balance
+
+using namespace std;
+int pin;
+class atm{
+    public:
+    int total,choice,depos,withdrw;
+    long acctn;
+    char zz;
+    
+    void inp()
+    {
+        cout<<"Enter your account number : ";
+        cin>>acctn;
+        cout<<"\nEnter your 4 digit PIN. ";
+        cin>>pin;
+        if (pin==1234)
+        cout<<"\n Welcome User.\n\n\n";
+        
+    }
+
+    void verify()
+
+    {   
+        if (pin!=1234)
+        {
+        cout<<"\nWrong pin ! 3 attempts left.\n";
+        cout<<"Enter the 4 digit pin again : ";
+        cin>>pin;
+        }
+
+        if (pin!=1234)
+        {
+            cout<<"\nWrong pin ! 2 attempts left.\n";
+            cout<<"Enter the 4 digit pin again : ";
+            cin>>pin;
+
+        }
+            
+
+        if (pin!=1234)
+        {
+            cout<<"\nWrong pin ! 1 attempt left.\n";
+            cout<<"Enter the 4 digit pin again : ";
+            cin>>pin;
+        }
+        
+        if (pin!=1234)
+        {
+            cout<<"\nACCOUNT BLOCKED !!! CONTACT YOUR BANK .\n\n";
+            exit; 
+        }
+                     
+        
+    }
+
+    void transaction()
+    {
+        cout<<"\nEnter your choice \n1.DEPOSIT\n2.WITHDRAWL\n3.BALANCE CHECK\n4.CHANGE PIN \n5.EXIT\n\nYour choice : ";
+        cin>>choice;
+        if (choice==1)
+        {
+            deposit();
+        }
+
+        else if (choice==2)
+        {
+            withdraw();
+        }
+        else if (choice==3)
+        {
+            cout<<"\nRemaining balance is :  "<<balance<<"\n";
+            transaction();
+        }
+        else if (choice==4)
+        {
+            cout<<"\nEnter new pin : ";
+            cin>>pin;
+            cout<<"\nPin changed successfully.\n";
+            transaction();
+        }    
+        if (choice==5)
+        {
+            cout<<"\nTHANK YOU FOR BANKING WITH US !!! \n \n";
+            exit;
+        }
+        
+
+    }
+
+    void deposit(){
+        cout<<"\nEnter amount to deposit: ";
+        cin>>depos;
+        cout<<"Amount deposited. Your balance is : "<<(balance+depos)<<endl;
+        balance+=depos;
+        transaction();
+        
+    }
+    void withdraw(){
+
+        cout<<"\nEnter amount to withdraw: ";
+        cin>>withdrw;
+        if (withdrw > balance)
+        {
+            cout<<"INSUFFICIENT FUNDS.\n";
+            cout<<"Balance is : "<<balance<<"\n";
+        }
+        else
+        {
+            cout<<withdrw<<" withdrawn. Remaining balance : "<<(balance-withdrw)<<endl;
+            balance-=withdrw;
+            
+        }
+        transaction();
+    }
+
+
+};
+
+int main()
+{
+    
+    atm a;
+    a.inp();
+    a.verify();
+    if (pin!=1234)
+    {
+        return 0;
+    }
+    
+    a.transaction();
+
+return 0;
+}
+
+

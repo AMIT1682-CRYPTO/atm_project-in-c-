@@ -2,4 +2,4 @@
 ATM using c++. it has features like pin verification, deposit, withdraw, balance check , etc.
 
 
-open the main_using .cpp extension
+open the main_code using .cpp extension
